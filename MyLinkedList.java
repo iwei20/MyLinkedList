@@ -3,14 +3,12 @@ public class MyLinkedList{
     private Node start,end;  
     
     public MyLinkedList() {
-        start = new Node();
-        end = new Node();
+        size = 0;
     }
 
     public int size() {
         return size;
     }
-    
     public boolean add(String value);
     public boolean add(int index, String value);
     public String get(int index);
