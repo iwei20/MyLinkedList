@@ -21,7 +21,32 @@ public class MyLinkedList{
         return true;
     }
 
-    public boolean add(int index, String value);
+    public boolean add(int index, String value) {
+        if(index > size) {
+            throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+        }
+        if(index == size) {
+            return add(value);
+        }
+        if(index == 0) {
+            Node toInsert = new Node(value);
+            start.setPrev(toInsert);
+            toInsert.setNext(start);
+            start = toInsert;
+            return true;
+        }
+        Node beforeInsert = start;
+        for(int i = 0; i < index - 1; ++i) {
+            beforeInsert = beforeInsert.getNext();
+        }
+        Node afterInsert = beforeInsert.getNext();
+        Node toInsert = new Node(value);
+        beforeInsert.setNext(toInsert);
+        toInsert.setPrev(beforeInsert);
+        toInsert.setNext(afterInsert);
+        afterInsert.setPrev(toInsert);
+        return true;
+    }
     public String get(int index);
     public String set(int index, String value);
     public String toString();
