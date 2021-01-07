@@ -32,22 +32,16 @@ public class MyLinkedList{
         }
         if(index == 0) {
             Node toInsert = new Node(value);
-            start.setPrev(toInsert);
-            toInsert.setNext(start);
+            connect(toInsert, start);
             start = toInsert;
             size++;
             return;
         }
-        Node beforeInsert = start;
-        for(int i = 0; i < index - 1; ++i) {
-            beforeInsert = beforeInsert.getNext();
-        }
-        Node afterInsert = beforeInsert.getNext();
+        Node there = getNode(index);
+        Node before = there.getPrev();
         Node toInsert = new Node(value);
-        beforeInsert.setNext(toInsert);
-        toInsert.setPrev(beforeInsert);
-        toInsert.setNext(afterInsert);
-        afterInsert.setPrev(toInsert);
+        connect(before, toInsert);
+        connect(toInsert, there);
         size++;
         return;
     }
@@ -62,5 +56,10 @@ public class MyLinkedList{
             curr = curr.getNext();
         }
         return curr;
+    }
+
+    private void connect(Node before, Node after) {
+        before.setNext(after);
+        after.setPrev(before);
     }
 }
