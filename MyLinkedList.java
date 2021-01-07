@@ -15,6 +15,7 @@ public class MyLinkedList{
             size++;
         } else {
             end.setNext(new Node(value));
+            end.getNext().setPrev(end);
             end = end.getNext();
             size++;
         }
