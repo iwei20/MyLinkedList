@@ -63,7 +63,19 @@ public class MyLinkedList{
         there.setData(value);
         return result;
     }
-    public String toString();
+    public String toString() {
+        String result = "[";
+        Node curr = start;
+        for(int i = 0; i < size; ++i) {
+            result += curr;
+            if(i != size - 1) {
+                result += ", ";
+            }
+            curr = curr.getNext();
+        }
+        result += "]";
+        return result;
+    }
     //Any helper method that returns a Node object MUST BE PRIVATE!
     private Node getNode(int index) {
         Node curr = start;
