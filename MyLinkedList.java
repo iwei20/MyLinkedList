@@ -35,6 +35,7 @@ public class MyLinkedList{
             start.setPrev(toInsert);
             toInsert.setNext(start);
             start = toInsert;
+            size++;
             return;
         }
         Node beforeInsert = start;
@@ -47,6 +48,7 @@ public class MyLinkedList{
         toInsert.setPrev(beforeInsert);
         toInsert.setNext(afterInsert);
         afterInsert.setPrev(toInsert);
+        size++;
         return;
     }
     
