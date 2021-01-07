@@ -75,7 +75,6 @@ public class MyLinkedList{
             connect(prev, next);
         }
         return result;
-
     }
 
     public String get(int index) {
@@ -93,6 +92,24 @@ public class MyLinkedList{
         String result = there.getData();
         there.setData(value);
         return result;
+    }
+
+    public void clear() {
+        size = 0;
+        start = null;
+        end = null;
+    }
+
+    /*
+    *@postcondition: All of the elements from other are removed from the other, and connected to the end of this linked list.
+    *@postcondition: The size of other is reduced to 0.
+    *@postcondition: The size of this is now the combined sizes of both original lists
+    */
+    public void extend(MyLinkedList other){
+        connect(end, other.start);
+        end = other.end;
+        size += other.size;
+        other.clear();
     }
 
     public String toString() {
