@@ -9,17 +9,17 @@ public class MyLinkedList{
     public int size() {
         return size;
     }
+
     public boolean add(String value) {
         Node toAppend = new Node(value);
         if(size == 0) {
             start = toAppend;
             end = toAppend;
-            size++;
         } else {
             connect(end, toAppend);
             end = toAppend;
-            size++;
         }
+        size++;
         return true;
     }
 
@@ -27,24 +27,22 @@ public class MyLinkedList{
         if(index < 0 || index > size) {
             throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
         }
+        
         if(index == size) {
             add(value);
-            return;
-        }
-        if(index == 0) {
+        } else if(index == 0) {
             Node toInsert = new Node(value);
             connect(toInsert, start);
             start = toInsert;
             size++;
-            return;
+        } else {
+            Node there = getNode(index);
+            Node before = there.getPrev();
+            Node toInsert = new Node(value);
+            connect(before, toInsert);
+            connect(toInsert, there);
+            size++;
         }
-        Node there = getNode(index);
-        Node before = there.getPrev();
-        Node toInsert = new Node(value);
-        connect(before, toInsert);
-        connect(toInsert, there);
-        size++;
-        return;
     }
     
     public String get(int index) {
@@ -63,6 +61,7 @@ public class MyLinkedList{
         there.setData(value);
         return result;
     }
+
     public String toString() {
         String result = "[";
         Node curr = start;
@@ -76,7 +75,7 @@ public class MyLinkedList{
         result += "]";
         return result;
     }
-    //Any helper method that returns a Node object MUST BE PRIVATE!
+
     private Node getNode(int index) {
         Node curr = start;
         for(int i = 0; i < index; ++i) {
