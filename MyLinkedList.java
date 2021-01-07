@@ -21,19 +21,20 @@ public class MyLinkedList{
         return true;
     }
 
-    public boolean add(int index, String value) {
+    public void add(int index, String value) {
         if(index > size) {
             throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
         }
         if(index == size) {
-            return add(value);
+            add(value);
+            return;
         }
         if(index == 0) {
             Node toInsert = new Node(value);
             start.setPrev(toInsert);
             toInsert.setNext(start);
             start = toInsert;
-            return true;
+            return;
         }
         Node beforeInsert = start;
         for(int i = 0; i < index - 1; ++i) {
@@ -45,8 +46,9 @@ public class MyLinkedList{
         toInsert.setPrev(beforeInsert);
         toInsert.setNext(afterInsert);
         afterInsert.setPrev(toInsert);
-        return true;
+        return;
     }
+    
     public String get(int index);
     public String set(int index, String value);
     public String toString();
