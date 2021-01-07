@@ -24,10 +24,10 @@ public class MyLinkedList{
     }
 
     public void add(int index, String value) {
-        if(index < 0 || index > size) {
+        if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
         }
-        
+
         if(index == size) {
             add(value);
         } else if(index == 0) {
@@ -46,14 +46,14 @@ public class MyLinkedList{
     }
     
     public String get(int index) {
-        if(index < 0 || index > size) {
+        if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
         }
         return getNode(index).getData();
     }
 
     public String set(int index, String value) {
-        if(index < 0 || index > size) {
+        if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
         }
         Node there = getNode(index);
