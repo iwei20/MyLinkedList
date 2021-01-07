@@ -53,8 +53,16 @@ public class MyLinkedList{
         }
         return getNode(index).getData();
     }
-    
-    public String set(int index, String value);
+
+    public String set(int index, String value) {
+        if(index < 0 || index > size) {
+            throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+        }
+        Node there = getNode(index);
+        String result = there.getData();
+        there.setData(value);
+        return result;
+    }
     public String toString();
     //Any helper method that returns a Node object MUST BE PRIVATE!
     private Node getNode(int index) {
