@@ -45,6 +45,39 @@ public class MyLinkedList{
         }
     }
     
+    public String remove(int index) {
+        if(index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
+        }
+        
+        String result;
+        if(size == 1) {
+            result = start.getData();
+            start = null;
+            end = null;
+        } else if(index == 0) {
+            result = start.getData();
+            Node newStart = start.getNext();
+            breakConnection(start, newStart);
+            start = newStart;
+        } else if(index == size - 1) {
+            result = end.getData();
+            Node newEnd = end.getPrev();
+            breakConnection(newEnd, end);
+            end = newEnd;
+        } else {
+            Node toRemove = getNode(index);
+            result = toRemove.getData();
+            Node prev = toRemove.getPrev();
+            Node next = toRemove.getNext();
+            breakConnection(prev, toRemove);
+            breakConnection(toRemove, next);
+            connect(prev, next);
+        }
+        return result;
+
+    }
+
     public String get(int index) {
         if(index < 0 || index >= size) {
             throw new IndexOutOfBoundsException(index + " out of bounds in list size " + size);
@@ -87,5 +120,12 @@ public class MyLinkedList{
     private void connect(Node before, Node after) {
         before.setNext(after);
         after.setPrev(before);
+    }
+
+    private void breakConnection(Node before, Node after) {
+        if(before.getNext() == after && after.getPrev() == before) {
+            before.setNext(null);
+            after.setPrev(null);
+        }
     }
 }
