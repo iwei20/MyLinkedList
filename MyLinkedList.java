@@ -10,13 +10,14 @@ public class MyLinkedList{
         return size;
     }
     public boolean add(String value) {
+        Node toAppend = new Node(value);
         if(size == 0) {
-            start = end = new Node(value);
+            start = toAppend;
+            end = toAppend;
             size++;
         } else {
-            end.setNext(new Node(value));
-            end.getNext().setPrev(end);
-            end = end.getNext();
+            connect(end, toAppend);
+            end = toAppend;
             size++;
         }
         return true;
