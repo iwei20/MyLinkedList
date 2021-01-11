@@ -74,6 +74,7 @@ public class MyLinkedList{
             breakConnection(toRemove, next);
             connect(prev, next);
         }
+        size--;
         return result;
     }
 
